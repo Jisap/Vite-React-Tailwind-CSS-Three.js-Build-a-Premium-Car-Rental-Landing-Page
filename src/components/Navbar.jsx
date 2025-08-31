@@ -1,6 +1,6 @@
-import { Gauge, Menu, User } from "lucide-react"
+import { Gauge, Menu, User, X } from "lucide-react"
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 
 const Navbar = () => {
@@ -36,9 +36,9 @@ const Navbar = () => {
 
 
   return (
-    <header className={`fixed cursor-pointer top-3.5 left-1/2 -translate-x-1/2 z-90 transition-all duration-300 rounded-full ${
+    <header className={`fixed cursor-pointer top-3.5 left-1/2 -translate-x-1/2 z-90 transition-all duration-300 rounded-full h-14 ${
       isScrolled 
-        ? "h-14 bg-zinc-900/50 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-3xl" 
+        ? "bg-zinc-900/50 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-3xl" 
         : "bg-zinc-200 w-[95%] max-w-4xl"
     }`}>
       <div className="mx-auto h-full px-6">
@@ -81,20 +81,26 @@ const Navbar = () => {
           </div>
 
           {/* button & user icon*/}
-          <div>
-            <button>
-              Rent Today
-            </button>
+          <div className="md:centered-row gap-2 hidden">
+            <Link to="/rent">
+              <button className="clash-display text-base bg-gradient-to-r from-zinc-950 to-zinc-950 px-4 py-2 rounded-full cursor-pointer hover:-translate-y-0.5 duration-200 transition-all ease-out">
+                Rent Today
+              </button>
+            </Link>
 
-            <div>
+            <div className="size-10 bg-zinc-800 rounded-full center-item cursor-pointer">
               <User />
             </div>
           </div>
 
           {/* mobile nav icon */}
-          <div>
-            <button>
-              <Menu size={40} />
+          <div className="md:hidden p-1 rounded-md">
+            <button 
+              className="md:hidden text-white hover:text-zinc-400 transition-colors"
+              onClick={() => setIsOpen(!isOpen)}  
+            >
+              { isOpen ? <X size={34} /> : <Menu size={40} className="text-zinc-400 mt-2"/> }
+              
             </button>
           </div>
 
