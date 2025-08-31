@@ -3,15 +3,16 @@ import React from 'react'
 
 const HeroSection = () => {
   return (
-    <section>
-      <div>
-        <div>
+    <section className='relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-[url(/car2.png)] bg-no-repeat bg-top'>
+      {/* container */}
+      <div className='container absolute mx-auto px-6 bottom-10 z-10'>
+        <div className='z-50 gap-4 md:centered-row lg:gap-80'>
           {/* left */}
-          <div>
-            <div>
+          <div className='z-10 left'>
+            <div className='col max-w-3xl mx-auto'>
               {/* sub head */}
-              <div>
-                <div>
+              <div className='mb-4'>
+                <div className='bg-zinc-300/20 text-zinc-50 rounded-full px-4 py-1 text-sm font-medium inline-flex items-center clash-display'>
                   <Sparkles /> Your Journey, Elevated
                 </div>
               </div>
