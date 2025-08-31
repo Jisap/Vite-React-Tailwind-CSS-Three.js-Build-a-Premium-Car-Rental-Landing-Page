@@ -1,4 +1,4 @@
-import { Gauge, Menu, User, X } from "lucide-react"
+import { ChevronLeft, Gauge, Menu, User, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 
@@ -18,7 +18,7 @@ const Navbar = () => {
     };
   },[]);
 
-  const navLinks = [
+  const navLinksData = [
     {
       name: "Home",
       path: "/",
@@ -32,6 +32,8 @@ const Navbar = () => {
       path: "/about",
     },
   ];
+
+  const getNavLinkClass = ({isActive}) => isActive ? "text-white p-5 bg-zinc-900 transition" : "hover:text-white text-zinc-800 border-b border-b-zinc-200 p-5 hover:bg-zinc-900 transition";
 
 
 
@@ -64,7 +66,7 @@ const Navbar = () => {
           {/* desktop navigation */}
           <div className="hidden md:centered-row gap-6">
             {
-              navLinks.map((item, index) => (
+              navLinksData.map((item, index) => (
                 <a 
                   key={index} 
                   href={item.path} 
@@ -99,14 +101,53 @@ const Navbar = () => {
               className="md:hidden text-white hover:text-zinc-400 transition-colors"
               onClick={() => setIsOpen(!isOpen)}  
             >
-              { isOpen ? <X size={34} /> : <Menu size={40} className="text-zinc-400 mt-2"/> }
+              { isOpen 
+                ? <X size={34} className="text-zinc-400" /> 
+                : <Menu size={40} className="text-zinc-400 mt-2"/> 
+              }
               
             </button>
           </div>
 
           {/* mobile nav menu */}
-          <div>
+          <div className={`
+            absolute md:hidden -top-5 w-full h-screen bg-zinc-50 backdrop-blur-lg transition-transform duration-300 ease-in-out z-[999] flex flex-col justify-between
+            ${isOpen ? "-translate-x-6" : "translate-x-[1500px]"}          `}>
+              <div className="flex items-center h-20 border-b border-b-zinc-500/80">
+                <button 
+                  className="flex items-center p-4 gap-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <ChevronLeft className="text-zinc-800"/>
+                  <p className="text-lg clash-display text-zinc-800">Back</p>
+                </button>
+              </div>
 
+              <div className="col flex-1 text-zinc-800 pb-4">
+                {
+                  ["/", "/fleet", "/about", "/rent"].map((path, i) => (
+                    <NavLink 
+                      key={i} 
+                      to={path} 
+                      className={getNavLinkClass}
+                    >
+                      <button 
+                        className="text-xl w-full clash-display"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {["Home", "Fleet", "About Us", "Rent Now"][i]}
+
+                      </button>
+                    </NavLink>
+                  ))
+                }
+              </div>
+
+              <div className="text-center text-sm pt-8 pb-8 text-zinc-500">
+                &copy; {new Date().getFullYear()}{" "}
+                <span className="font-semibold">DriveWell </span>
+                All rights reserved.
+              </div>
           </div>
         </nav>
       </div>
