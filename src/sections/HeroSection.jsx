@@ -26,7 +26,7 @@ const HeroSection = () => {
 
           {/* right */}
           <div className='right'>
-            <p className='text-lg z-10 text-gray-300 mb-8 max-w-md'>
+            <p className='text-lg z-10 text-gray-200 mb-8 max-w-md'>
               Unlock unparalleled freedom with our premium car rental service. <br className='hidden md:block'/>
               Experience luxury, comfort, and seamless booking.
              </p>
