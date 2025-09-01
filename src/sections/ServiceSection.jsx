@@ -1,6 +1,9 @@
 import { MoveRight } from "lucide-react"
 import { Link } from "react-router-dom"
+import ServiceCard from "../components/ServiceCard"
 
+
+import {featuredServices} from "../assets/assets"
 
 const ServiceSection = () => {
   return (
@@ -17,14 +20,22 @@ const ServiceSection = () => {
             </p>
           </div>
 
-          <Link to="/fleet" className="mt-4 sm:mt-0 flex items-center text-sky-500 hover:">
-              View All Cars <MoveRight />
+          <Link to="/fleet" className="mt-4 sm:mt-0 flex items-center text-sky-500 hover:text-sky-400 transition-colors">
+              View All Cars <MoveRight className="ml-1 size-4"/>
           </Link>
         </div>
 
         {/* Service Cards */}
-        <div>
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:px-16">
+          {featuredServices.map((service, index) => (
+            <ServiceCard 
+              key={index} 
+              title={service.title} 
+              description={service.description} 
+              icon={service.icon} 
+              imageSrc={service.imageSrc} 
+            />
+          ))}           
         </div>
 
       </div>

@@ -5,12 +5,12 @@ import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
 
-  const [isScrolled, setISsCrolled] = useState(false);
+  const [isScrolled, setIsSCrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setISsCrolled(window.scrollY > 50);
+      setIsSCrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -30,8 +30,9 @@ const Navbar = () => {
     {
       name: "About Us",
       path: "/about",
-    },
+    }
   ];
+
 
   const getNavLinkClass = ({isActive}) => isActive ? "text-white p-5 bg-zinc-900 transition" : "hover:text-white text-zinc-800 border-b border-b-zinc-200 p-5 hover:bg-zinc-900 transition";
 
@@ -103,7 +104,7 @@ const Navbar = () => {
             >
               { isOpen 
                 ? <X size={34} className="text-zinc-400" /> 
-                : <Menu size={40} className="text-zinc-400 mt-2"/> 
+                : <Menu size={40} className={`${isScrolled ? "text-zinc-200" : "text-zinc-800"} mt-2`} /> 
               }
               
             </button>
@@ -136,7 +137,6 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                       >
                         {["Home", "Fleet", "About Us", "Rent Now"][i]}
-
                       </button>
                     </NavLink>
                   ))
