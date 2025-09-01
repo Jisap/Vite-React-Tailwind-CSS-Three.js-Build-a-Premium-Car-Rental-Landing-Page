@@ -3,27 +3,31 @@ import React from 'react'
 
 const EventTypeSection = () => {
   return (
-    <section>
-      <div>
+    <section className='section-padding bg-black'>
+      <div className='max-w-7xl mx-auto mb-24'>
         {/* Title */}
-        <div>
+        <div className='mb-20 flex justify-between items-end'>
           <div>
-            <h2>
+            <h2 className='heading-2 clash-display grad1 from-zinc-50 max-w-2xl'>
               Perfect Ride for Every Occasion
             </h2>
 
-            <p>
+            <p className='text-zinc-400 max-w-md'>
               Find the ideal car for your business needs, family adventures, or special moments.
             </p>
           </div>
 
-          <button>
-            See All <ArrowRight />
+          <button 
+            className='hidden md:hidden bg-blue-300 text-zinc-800 py-3 px-5 rounded-full cursor-pointer hover:bg-transparent
+            border border-transparent hover:border-zinc-100 transition-all duration-200 ease-out hover:text-zinc-200 clash-display
+            h-fit lg:centered-row gap-2'
+          >
+            See All <ArrowRight className='w-8 text-sm'/>
           </button>
         </div>
 
         {/* Grid */}
-        <div>
+        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-2'>
           {/* CarCards */}
         </div>
 
