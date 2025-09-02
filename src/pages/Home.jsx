@@ -1,3 +1,4 @@
+import CTASection from "../sections/CTASection"
 import EventTypeSection from "../sections/EventTypeSection"
 import HeroSection from "../sections/HeroSection"
 import ServiceSection from "../sections/ServiceSection"
@@ -9,6 +10,7 @@ const Home = () => {
       <HeroSection />
       <ServiceSection />
       <EventTypeSection />
+      <CTASection />
     </div>
   )
 }

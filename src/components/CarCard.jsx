@@ -2,12 +2,12 @@
 import BookNowButton from "./BookNowButton"
 
 
-const CarCard = ({imageSrc, name}) => {
+const CarCard = ({image, name}) => {
   return (
     <div 
       className="h-[400px] lg:h-[380px] rounded cursor-pointer flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 ease-in-out" 
       style={{
-        backgroundImage: `url(${imageSrc})`,
+        backgroundImage: `url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
