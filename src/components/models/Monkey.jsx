@@ -6,7 +6,12 @@ Command: npx gltfjsx@6.5.3 monkey.glb
 import { useGLTF } from '@react-three/drei'
 
 export function Monkey(props) {
+  
   const { nodes, materials } = useGLTF('/monkey.glb')
+
+  // const material = materials["Material.001"]
+  //   material.color.set("#ffcc00")
+
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Suzanne.geometry} material={materials['Material.001']} />
