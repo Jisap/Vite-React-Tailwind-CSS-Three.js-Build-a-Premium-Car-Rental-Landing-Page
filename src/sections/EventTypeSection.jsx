@@ -1,5 +1,8 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
+import { carUsageCategories } from '../assets/assets.jsx'
+import CarCard from '../components/CarCard'
+
 
 const EventTypeSection = () => {
   return (
@@ -29,6 +32,14 @@ const EventTypeSection = () => {
         {/* Grid */}
         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-2'>
           {/* CarCards */}
+          {
+            carUsageCategories.map((event, index) => (
+              <CarCard 
+                key={index}
+                {...event}
+              />
+            ))
+          }
         </div>
 
       </div>
