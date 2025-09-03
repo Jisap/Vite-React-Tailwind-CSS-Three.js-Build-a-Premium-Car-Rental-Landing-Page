@@ -11,19 +11,19 @@ Title: 2024 Hyundai Santa Fe
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useState, useRef } from 'react'
-import { goodColors } from '../../assets/assets'
-import { Color } from 'three';
+import { goodColors } from '../../assets/assets' // paleta de colores disponibles para el coche
+import { Color } from 'three'; // Clase para manejar colores en Three.js
 
 
 export function Hyundai_SUV(props) {
   
-  const { nodes, materials } = useGLTF('/2024_hyundai_santa_fe.glb');
-  const [targetColorIndex, setTargetColorIndex] = useState(0);
+  const { nodes, materials } = useGLTF('/2024_hyundai_santa_fe.glb');  // Carga del modelo
+  const [targetColorIndex, setTargetColorIndex] = useState(0);         // Estado para el índice del color
   
-  const bodyMaterial = materials.santafek_body
+  const bodyMaterial = materials.santafek_body                         // Se obtiene el material específico de la carrocería del coche
 
-  const currentColor = useRef(new Color(goodColors[0]))
-  const targetColor = useRef(new Color(goodColors[0]))
+  const currentColor = useRef(new Color(goodColors[0]));               // Guarda el color que la carrocería tiene en este preciso instante. Se usa useRef para poder modificar su valor en cada fotograma sin causar un re-renderizado del componente. Se inicializa con el primer color del array. 
+  const targetColor = useRef(new Color(goodColors[0]));                // Guarda el color al que queremos llegar. También es una referencia.
 
   bodyMaterial.roughness = 0.1;
 
