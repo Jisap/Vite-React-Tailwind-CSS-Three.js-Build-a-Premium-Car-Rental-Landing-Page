@@ -9,18 +9,52 @@ Title: 2024 Hyundai Santa Fe
 
 
 import { useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { useEffect, useState, useRef } from 'react'
+import { goodColors } from '../../assets/assets'
+import { Color } from 'three';
+
 
 export function Hyundai_SUV(props) {
   
-  const { nodes, materials } = useGLTF('/2024_hyundai_santa_fe.glb')
+  const { nodes, materials } = useGLTF('/2024_hyundai_santa_fe.glb');
+  const [targetColorIndex, setTargetColorIndex] = useState(0);
   
   const bodyMaterial = materials.santafek_body
-  bodyMaterial.color.set("#ffcc00")
+
+  const currentColor = useRef(new Color(goodColors[0]))
+  const targetColor = useRef(new Color(goodColors[0]))
+
+  bodyMaterial.roughness = 0.1;
+
+  // ACtualiza el color cuando el targetColorInde cambia
+  useEffect(() => {
+    if(bodyMaterial){
+      targetColor.current.set(goodColors[targetColorIndex])
+    }
+  },[targetColorIndex, goodColors, bodyMaterial])
   
+  // UseFrame para un cambio de color suave
+  useFrame((state, delta) => {
+    if(bodyMaterial){
+      currentColor.current.lerp(targetColor.current, 0.7 * delta)
+      bodyMaterial.color.copy(currentColor.current)
+    }
+  });
+
+  const changeColorOnClick = () => {
+    setTargetColorIndex((prevIndex) => (prevIndex + 1) % goodColors.length)
+  }
+
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>
-        <group position={[0, 10.023, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+        <group 
+          position={[0, 10.023, 0]} 
+          rotation={[-Math.PI / 2, 0, 0]} 
+          scale={100}
+          onClick={changeColorOnClick}
+        >
           <mesh geometry={nodes.santafek_engbaycrap_santafek_black_0.geometry} material={materials.santafek_black} />
           <mesh geometry={nodes.santafek_engbaycrap_santafek_body_0.geometry} material={materials.santafek_body} />
           <mesh geometry={nodes.santafek_engbaycrap_etk_engine_i6_0.geometry} material={materials.etk_engine_i6} />
